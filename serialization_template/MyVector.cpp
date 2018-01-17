@@ -1,11 +1,3 @@
-//
-//  MyVector.cpp
-//  serialization
-//
-//  Created by <author> on 17/01/2018.
-//
-//
-
 #include "MyVector.hpp"
 
 #include <cstdlib>

@@ -1,14 +1,3 @@
-//
-//  MyVector.hpp
-//  serialization
-//
-//  Created by <author> on 17/01/2018.
-//
-//
-
-#ifndef MyVector_hpp
-#define MyVector_hpp
-
 #include <vector>
 
 class MyVector : public  std::vector<double>{
@@ -21,6 +10,3 @@ public:
     void deserialize( void * );
     int bytes();
 };
-
-
-#endif /* MyVector_hpp */

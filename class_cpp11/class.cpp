@@ -1,3 +1,11 @@
+//
+//  class.cpp
+//  class_cpp11
+//
+//  Created by <author> on 17/01/2018.
+//
+//
+
 #include <iostream>
 #include <utility>
 #include "class.hpp"
