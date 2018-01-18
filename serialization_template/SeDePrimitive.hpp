@@ -9,14 +9,34 @@
 #ifndef SeDePrimitive_hpp
 #define SeDePrimitive_hpp
 
+#include <cstring>
+#include <iostream>
+
+#include "ISeDe.hpp"
+
 template <typename T>
-class SeDePrimitive{
-private:
+class SeDePrimitive : public ISeDe{
 public:
     T obj;
 
-    int bytes(){ return sizeof(obj); };
-protected:
+    SeDePrimitive(){};
+    SeDePrimitive(const T& t) : obj{t} {};
+
+    // copy constructor, artithletic, assignment operators, comparitions ...
+
+    void serialize( void* ptr ){
+        std::memcpy(ptr, &obj, sizeof(obj));
+        // *static_cast<T*>(ptr) = obj;
+    };
+
+    void deserialize( void* ptr ){
+        std::memcpy(&obj, ptr, sizeof(obj));
+        // obj = *static_cast<T*>(ptr);
+    };
+
+    int bytes(){
+        return sizeof(obj);
+    };
 
 };
 

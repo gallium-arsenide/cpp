@@ -24,7 +24,7 @@ int main(){
     std::cout << std::endl << "std::vector<A> v;"<<std::endl;
     std::vector<A> v;
     v.reserve(5);
-    
+
     std::cout << "v.push_back(first);"<<std::endl;
     v.push_back(first);
     std::cout << std::endl << "v.push_back(A());"<<std::endl;

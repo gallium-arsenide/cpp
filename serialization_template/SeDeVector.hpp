@@ -10,17 +10,49 @@
 #define SeDeVector_hpp
 
 #include <vector>
+#include <cstring>
+
+#include "ISeDe.hpp"
 
 template < typename T >
-class SeDeVector : public std::vector<T> {
+class SeDeVector : public std::vector<T>, public ISeDe {
 private:
 public:
-    SeDeVector();
-    ~SeDeVector();
+    using std::vector<T>::vector;
+    ~SeDeVector(){};
 
-    void serialize( void * );
-    void deserialize( void * );
-    int bytes();
+    void serialize( void * ptr ){
+        unsigned long int size = this->size();
+        std::memcpy(ptr, &size, sizeof(size));
+
+        ptr = static_cast<unsigned long int *>(ptr) + 1;
+
+        for(T& obj: *this){
+            obj.serialize(ptr);
+            ptr = static_cast<double*>(ptr) + 1;
+        }
+    };
+
+    void deserialize( void * ptr ){
+        unsigned long int size;
+        std::memcpy(&size, ptr, sizeof(size));
+        this->resize(size);
+
+        ptr = static_cast<unsigned long int *>(ptr) + 1;
+
+        for(T& obj: *this){
+            obj.deserialize(ptr);
+            ptr = static_cast<double*>(ptr) + 1;//obj.bytes();
+        }
+    };
+
+    int bytes(){
+        int size = sizeof(unsigned long int);
+        for(T& obj : *this){
+            size += obj.bytes();
+        }
+        return size;
+    };
 protected:
 
 };

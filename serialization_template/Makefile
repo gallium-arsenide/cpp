@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS  = -pedantic -Wall
 
-SRC = main MyVector
+SRC = main
 OBJ=$(SRC:%=%.o)
 EXE = serialization
 
