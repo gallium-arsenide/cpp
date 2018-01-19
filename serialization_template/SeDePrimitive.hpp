@@ -12,10 +12,8 @@
 #include <cstring>
 #include <iostream>
 
-#include "ISeDe.hpp"
-
 template <typename T>
-class SeDePrimitive : public ISeDe{
+class SeDePrimitive{
 public:
     T obj;
 
@@ -27,6 +25,7 @@ public:
     void serialize( void* ptr ){
         std::memcpy(ptr, &obj, sizeof(obj));
         // *static_cast<T*>(ptr) = obj;
+        // *((T*) ptr) = obj;
     };
 
     void deserialize( void* ptr ){

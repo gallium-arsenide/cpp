@@ -12,10 +12,9 @@
 #include <vector>
 #include <cstring>
 
-#include "ISeDe.hpp"
 
 template < typename T >
-class SeDeVector : public std::vector<T>, public ISeDe {
+class SeDeVector : public std::vector<T>{
 private:
 public:
     using std::vector<T>::vector;

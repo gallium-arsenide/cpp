@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "SeDeVector.hpp"
 #include "SeDePrimitive.hpp"
@@ -20,18 +21,20 @@ int main(){
     }
     std::cout<<std::endl;
 
-    void * p = nullptr;
-    p = std::malloc( v.bytes() );
+    // void * p = nullptr;
+    // p = std::malloc( v.bytes() );
 
-    v.serialize(p);
+    std::unique_ptr<char> p( new char[v.bytes()] );
+
+    v.serialize(p.get());
 
     SeDeVector< SeDePrimitive<double> > v2;
-    v2.deserialize(p);
+    v2.deserialize(p.get());
     for(auto& i : v2){
         std::cout<<i.obj<<" ";
     }
     std::cout<<std::endl;
 
-    free(p);
+    // free(p);
     return 0;
 }
