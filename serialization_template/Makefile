@@ -1,8 +1,9 @@
 CXX = g++
-CXXFLAGS  = -pedantic -Wall
+CXXFLAGS = -pedantic -Wall
 
 SRC = main
 OBJ=$(SRC:%=%.o)
+HDR= SeDePrimitive.hpp SeDeVector.hpp
 EXE = serialization
 
 all: $(EXE)
@@ -10,8 +11,8 @@ all: $(EXE)
 $(EXE): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $(EXE) $^
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+main.o: main.cpp SeDeVector.hpp SeDePrimitive.hpp
+	$(CXX) $(CXXFLAGS) -c -o $@ main.cpp
 
 clean:
 	rm -f *.o $(EXE)
